@@ -85,7 +85,17 @@
           }
           else
           {
-               header("location: index.php?Notes=Invoice Added...");
+		$GetHeaders = "";
+		$x = 0;
+		foreach($_POST["DocumentTitle"] as $Document)
+		{
+			if($Document != "")
+			{
+				$GetHeaders = $GetHeaders."&Document_".$x."=".$Document;	
+			}
+		}
+
+               	header("Location: index.php?Notes=Invoice Added....&CategoryID=".$CategoryID."&SupplierID=".$SupplierID.$GetHeaders);
                exit();
           }
      
@@ -96,7 +106,17 @@
 
           if($ID > 0)
           {
-               header("Location: index.php?Notes=Invoice updated...");
+		$GetHeaders = "";
+		$x = 0;
+		foreach($_POST["DocumentTitle"] as $Document)
+		{
+			if($Document != "")
+			{
+				$GetHeaders = $GetHeaders."&Document_".$x."=".$Document;	
+			}
+		}
+
+               	header("Location: index.php?Notes=Invoice updated....&CategoryID=".$CategoryID."&SupplierID=".$SupplierID.$GetHeaders);
                exit();
           }
           

@@ -12,8 +12,25 @@ if($UserID < 1)
      exit();
 }
 
-$CategoryID = "";
-$SupplierID = "";
+$CategoryID = 0;
+if(isset($_GET["CategoryID"]))
+{
+	$CategoryID = intVal($_GET["CategoryID"]);
+}
+
+$SupplierID = 0;
+if(isset($_GET["SupplierID"]))
+{
+	$SupplierID = intVal($_GET["SupplierID"]);
+}
+
+$DocumentTitle = "";
+if(isset($_GET["Document_0"]))
+{
+	$DocumentTitle = filter_var($_GET["Document_0"], FILTER_SANITIZE_STRING);
+}
+
+
 $Date = date("Ymd");
 $Amount = "";
 $Reference = "";
@@ -340,7 +357,7 @@ function AddItems(items)
                                         print "<input type=\"file\" name=\"SupportingDocumentation[]\" onchange=\"AddItems(0);\">";
                                    print "</td>";
                                    print "<td>";
-                                        print "<input type=\"text\" name=\"DocumentTitle[]\">";
+                                        print "<input type=\"text\" name=\"DocumentTitle[]\" value=\"".$DocumentTitle."\">";
                                    print "</td>";
                                    print "</tr>";
                                    
