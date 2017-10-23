@@ -1,0 +1,14 @@
+.TableTopBorder 
+{
+	border-top-style:solid; 
+	border-top-color:#454545; 
+	border-top-width:1px;
+}
+
+.TableBottomBorder 
+{
+	border-bottom-style:solid; 
+	border-bottom-color:#454545; 
+	border-bottom-width:1px;
+}
+	

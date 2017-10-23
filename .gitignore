@@ -1,0 +1,5 @@
+includes/Variables.inc.php
+UploadedDocuments/*.*
+UploadedDocuments/*
+UploadedDocuments
+!UploadedDocuments/index.php
