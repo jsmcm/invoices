@@ -37,6 +37,15 @@
      $NewInvoice = new Invoice();
      $User = new User();
      
+     
+     $UserID = $User->GetAccountID();
+     
+     if($UserID < 1)
+     {
+          header("Location: /index.php");
+          exit();
+     }
+          
      $InvoiceID = "";
      $InvoiceID = trim($_POST["InvoiceID"]);
      
@@ -85,17 +94,17 @@
           }
           else
           {
-		$GetHeaders = "";
-		$x = 0;
-		foreach($_POST["DocumentTitle"] as $Document)
-		{
-			if($Document != "")
-			{
-				$GetHeaders = $GetHeaders."&Document_".$x."=".$Document;	
-			}
-		}
+          $GetHeaders = "";
+          $x = 0;
+          foreach($_POST["DocumentTitle"] as $Document)
+          {
+               if($Document != "")
+               {
+                    $GetHeaders = $GetHeaders."&Document_".$x."=".$Document;    
+               }
+          }
 
-               	header("Location: index.php?Notes=Invoice Added....&CategoryID=".$CategoryID."&SupplierID=".$SupplierID.$GetHeaders);
+                    header("Location: index.php?Notes=Invoice Added....&CategoryID=".$CategoryID."&SupplierID=".$SupplierID.$GetHeaders);
                exit();
           }
      
@@ -106,17 +115,17 @@
 
           if($ID > 0)
           {
-		$GetHeaders = "";
-		$x = 0;
-		foreach($_POST["DocumentTitle"] as $Document)
-		{
-			if($Document != "")
-			{
-				$GetHeaders = $GetHeaders."&Document_".$x."=".$Document;	
-			}
-		}
+          $GetHeaders = "";
+          $x = 0;
+          foreach($_POST["DocumentTitle"] as $Document)
+          {
+               if($Document != "")
+               {
+                    $GetHeaders = $GetHeaders."&Document_".$x."=".$Document;    
+               }
+          }
 
-               	header("Location: index.php?Notes=Invoice updated....&CategoryID=".$CategoryID."&SupplierID=".$SupplierID.$GetHeaders);
+                    header("Location: index.php?Notes=Invoice updated....&CategoryID=".$CategoryID."&SupplierID=".$SupplierID.$GetHeaders);
                exit();
           }
           

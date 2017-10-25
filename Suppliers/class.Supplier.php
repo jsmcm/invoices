@@ -118,7 +118,37 @@ class Supplier
 
      }
      
-     
+     function DeleteSupplier($SupplierID, $AccountID)
+     {         
+
+          /* Connecting, selecting database */
+          include("../includes/Variables.inc.php"); 
+
+          $link = include("../includes/DatabaseConnection.inc");
+
+          /* Connecting, selecting database */
+
+          mysql_select_db($DatabaseName) or die("Could not select database (1)");
+
+          $query = "UPDATE ".$TablePrefix."suppliers SET Deleted = 1 WHERE AccountID = ".$AccountID." AND SupplierID = ".$SupplierID;
+
+          //print "Query: ".$query."<p>";
+          
+          $ErrorNumber = 0;
+
+          $result = mysql_query($query) or $ErrorNumber = mysql_errno();
+
+          if($ErrorNumber > 0)
+          {
+               $LastErrorNumber = 2000;
+               $LastErrorDescription = "Undefined error occured";
+               return -1;
+          }
+
+          return 1;
+
+
+     }     
      function GetSupplierDetail($SupplierID, &$SupplierName, &$Telephone, &$EmailAddress, &$WebAddress, &$SupplierNotes, $AccountID)
      {
           

@@ -52,7 +52,7 @@
      }
      else
      {
-          print "Returnint to index.php";
+          header("Location: ./index.php?Notes=".$Notes);
      }
 
      exit();

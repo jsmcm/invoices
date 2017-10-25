@@ -5,8 +5,15 @@
      require_once("class.Supplier.php");
      
      $NewSupplier = new Supplier();
-     $User = new User();
+     $oUser = new User();
      
+     $UserID = $oUser->GetAccountID();
+     
+     if($UserID < 1)
+     {
+          header("Location: /index.php");
+          exit();
+     }
 
      $SupplierName = $_POST["SupplierName"];
      $Telephone = $_POST["Telephone"];
@@ -15,23 +22,21 @@
      $SupplierID = $_POST["SupplierID"];
      $Notes = $_POST["Notes"];
 
-     $SimilarSupplierID = $NewSupplier->SimilarSupplierExists($SupplierName, $SupplierID, $User->GetAccountID());
+     $SimilarSupplierID = $NewSupplier->SimilarSupplierExists($SupplierName, $SupplierID, $UserID);
      if($SimilarSupplierID)
      {
-          header("location: CheckSimilar.php?SupplierName=".$SupplierName."&SimilarSupplierID=".$SimilarSupplierID."&SupplierID=".$SupplierID);
-          
-     
+          header("location: CheckSimilar.php?SupplierName=".$SupplierName."&Telephone=".$Telephone."&EmailAddress=".$EmailAddress."&WebAddress=".$WebAddress."&SimilarSupplierID=".$SimilarSupplierID."&SupplierID=".$SupplierID);
      }
      else
      {
           if($SupplierID == -1)
           {
-               $NewSupplier->AddSupplier($SupplierName, $Telephone, $EmailAddress, $WebAddress, $Notes, $User->GetAccountID());
+               $NewSupplier->AddSupplier($SupplierName, $Telephone, $EmailAddress, $WebAddress, $Notes, $UserID);
                header("location: index.php?Notes=Supplier Added...");
           }
           else
           {
-               $NewSupplier->EditSupplier($SupplierName, $Telephone, $EmailAddress, $WebAddress, $Notes, $SupplierID, $User->GetAccountID());
+               $NewSupplier->EditSupplier($SupplierName, $Telephone, $EmailAddress, $WebAddress, $Notes, $SupplierID, $UserID);
                header("location: index.php?Notes=Supplier edit successful...");
           }
           
